@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_full_news"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="headline.news.newsheadline.browser.FullNews">
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" >
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="154dp"
+            android:layout_y="218dp"
+            android:id="@+id/fullNewsPB" />
+    </WebView>
+</RelativeLayout>

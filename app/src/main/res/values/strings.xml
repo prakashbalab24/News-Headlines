@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">News Headline</string>
+    <string name="toolbar_title">Headline Today</string>
+</resources>
