@@ -9,8 +9,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:elevation="3dp"
-        android:layout_margin="2dp"
-        card_view:cardCornerRadius="10dp">
+        card_view:cardCornerRadius="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,9 +27,8 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-               android:padding="10dp"
-                android:gravity="center"
+                android:padding="10dp"
+               android:layout_below="@+id/thumbnail"
                 android:textColor="#fff"
                 android:textSize="@dimen/album_title" />
 

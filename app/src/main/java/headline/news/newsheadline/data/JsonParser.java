@@ -11,7 +11,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import headline.news.newsheadline.adapter.NewsModel;
+import headline.news.newsheadline.utils.Utils;
+import headline.news.newsheadline.model.NewsModel;
 import headline.news.newsheadline.adapter.NewsAdapter;
 
 
@@ -21,17 +22,21 @@ import headline.news.newsheadline.adapter.NewsAdapter;
 
 public class JsonParser extends AsyncTask<Void, Void, Void> {
     private NewsAdapter newsAdapter;
-    private String apiKey="<API KEY HERE>";
+    private  String source;
     private List<NewsModel> newsList;
     private ProgressBar progressBar;
-    String url = "https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey="+apiKey;
+   // private  String url = "https://newsapi.org/v1/articles?source="+source+"&sortBy=top&apiKey="+apiKey;
+
+    String url ;
 
 
-    public JsonParser(NewsAdapter newsAdapter,List<NewsModel> newsList,ProgressBar progressBar)
+    public JsonParser(NewsAdapter newsAdapter,List<NewsModel> newsList,ProgressBar progressBar,String source)
     {
         this.newsAdapter = newsAdapter;
         this.newsList = newsList;
         this.progressBar = progressBar;
+        this.source = source;
+
     }
     @Override
     protected void onPreExecute() {
@@ -43,7 +48,8 @@ public class JsonParser extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... arg0) {
         RequestHandler sh = new RequestHandler();
-        String jsonStr = sh.makeServiceCall(url);
+        Log.i("urlString",source);
+        String jsonStr = sh.makeServiceCall(Utils.urlToHit(source));
         if (jsonStr != null) {
             try {
                 JSONObject jsonObj = new JSONObject(jsonStr);

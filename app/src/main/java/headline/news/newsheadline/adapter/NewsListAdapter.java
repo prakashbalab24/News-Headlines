@@ -13,18 +13,18 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import headline.news.newsheadline.browser.FullNews;
+import headline.news.newsheadline.MainActivity;
 import headline.news.newsheadline.R;
 import headline.news.newsheadline.model.NewsModel;
 import jp.wasabeef.picasso.transformations.BlurTransformation;
 
 /**
- * Created by prakash-bala on 14/12/16.
+ * Created by prakash-bala on 19/1/17.
  */
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
+public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyViewHolder> {
 
-    private List<NewsModel> newsList;
+    private List<NewsModel> newsSourceList;
     private Context context;
 
 
@@ -41,8 +41,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     }
 
 
-    public NewsAdapter(Context context,List<NewsModel> newsList) {
-        this.newsList = newsList;
+    public NewsListAdapter(Context context,List<NewsModel> newsSourceList) {
+        this.newsSourceList = newsSourceList;
         this.context = context;
     }
 
@@ -56,18 +56,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final NewsModel news = newsList.get(position);
+        final NewsModel news = newsSourceList.get(position);
         holder.title.setText(news.getTitle());
         Picasso.with(context)
-                .load(news.getThumbnail())
+                .load(news.getLocalThumbnail())
                 .transform(new BlurTransformation(context))
                 .into(holder.thumbnail);
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sourceUrl = news.getSourceUrl();
-                Intent intent = new Intent(context, FullNews.class);
-                intent.putExtra("sourceUrl",sourceUrl);
+                String sourceUrl = news.getTitle();
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("source",sourceUrl);
                 context.startActivity(intent);
             }
         });
@@ -75,6 +75,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return newsList.size();
+        return newsSourceList.size();
     }
 }
